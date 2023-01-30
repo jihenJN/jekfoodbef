@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="PlatesHeading">
+    <span>Plates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-plates"
+        [routerLink]="['/plates/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Plates </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="plates?.length === 0">
+    <span>No Plates found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="plates && plates.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span>Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span>Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <div class="d-flex">
+              <span>Photo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="origin">
+            <div class="d-flex">
+              <span>Origin</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="stars">
+            <div class="d-flex">
+              <span>Stars</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="favorite">
+            <div class="d-flex">
+              <span>Favorite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cookTime">
+            <div class="d-flex">
+              <span>Cook Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="restaurant.name">
+            <div class="d-flex">
+              <span>Restaurant</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plates of plates; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/plates', plates.id, 'view']">{{ plates.id }}</a>
+          </td>
+          <td>{{ plates.name }}</td>
+          <td>{{ plates.price }}</td>
+          <td>
+            <a *ngIf="plates.photo" (click)="openFile(plates.photo, plates.photoContentType)">
+              <img [src]="'data:' + plates.photoContentType + ';base64,' + plates.photo" style="max-height: 30px" alt="plates image" />
+            </a>
+            <span *ngIf="plates.photo">{{ plates.photoContentType }}, {{ byteSize(plates.photo) }}</span>
+          </td>
+          <td>{{ plates.origin }}</td>
+          <td>{{ plates.stars }}</td>
+          <td>{{ plates.favorite }}</td>
+          <td>{{ plates.cookTime }}</td>
+          <td>
+            <div *ngIf="plates.restaurant">
+              <a [routerLink]="['/restaurant', plates.restaurant.id, 'view']">{{ plates.restaurant.name }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/plates', plates.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/plates', plates.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(plates)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="plates">
+      <h2 data-cy="platesDetailsHeading"><span>Plates</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ plates.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ plates.name }}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+          <span>{{ plates.price }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="plates.photo">
+            <a (click)="openFile(plates.photo, plates.photoContentType)">
+              <img [src]="'data:' + plates.photoContentType + ';base64,' + plates.photo" style="max-width: 100%" alt="plates image" />
+            </a>
+            {{ plates.photoContentType }}, {{ byteSize(plates.photo) }}
+          </div>
+        </dd>
+        <dt><span>Origin</span></dt>
+        <dd>
+          <span>{{ plates.origin }}</span>
+        </dd>
+        <dt><span>Stars</span></dt>
+        <dd>
+          <span>{{ plates.stars }}</span>
+        </dd>
+        <dt><span>Favorite</span></dt>
+        <dd>
+          <span>{{ plates.favorite }}</span>
+        </dd>
+        <dt><span>Cook Time</span></dt>
+        <dd>
+          <span>{{ plates.cookTime }}</span>
+        </dd>
+        <dt><span>Restaurant</span></dt>
+        <dd>
+          <div *ngIf="plates.restaurant">
+            <a [routerLink]="['/restaurant', plates.restaurant.id, 'view']">{{ plates.restaurant.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/plates', plates.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-plates-heading" data-cy="PlatesCreateUpdateHeading">Create or edit a Plates</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+          <div *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('price')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('price')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_photo">Photo</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('photo')!.value"
+              alt="plates image"
+            />
+            <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('photo', 'photoContentType', 'file_photo')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', true)" accept="image/*" />
+          </div>
+          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoContentType"
+            id="field_photoContentType"
+            formControlName="photoContentType"
+          />
+          <div *ngIf="editForm.get('photo')!.invalid && (editForm.get('photo')!.dirty || editForm.get('photo')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('photo')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_origin">Origin</label>
+          <input type="text" class="form-control" name="origin" id="field_origin" data-cy="origin" formControlName="origin" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_stars">Stars</label>
+          <input type="number" class="form-control" name="stars" id="field_stars" data-cy="stars" formControlName="stars" />
+          <div *ngIf="editForm.get('stars')!.invalid && (editForm.get('stars')!.dirty || editForm.get('stars')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('stars')?.errors?.max"> This field cannot be more than 5. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('stars')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_favorite">Favorite</label>
+          <input type="checkbox" class="form-check" name="favorite" id="field_favorite" data-cy="favorite" formControlName="favorite" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_cookTime">Cook Time</label>
+          <input type="number" class="form-control" name="cookTime" id="field_cookTime" data-cy="cookTime" formControlName="cookTime" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_restaurant">Restaurant</label>
+          <select
+            class="form-control"
+            id="field_restaurant"
+            data-cy="restaurant"
+            name="restaurant"
+            formControlName="restaurant"
+            [compareWith]="compareRestaurant"
+          >
+            <option *ngIf="!editForm.get('restaurant')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="restaurantOption" *ngFor="let restaurantOption of restaurantsSharedCollection">
+              {{ restaurantOption.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['restaurant'])!.invalid && (editForm.get(['restaurant'])!.dirty || editForm.get(['restaurant'])!.touched)"
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['restaurant'])?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
