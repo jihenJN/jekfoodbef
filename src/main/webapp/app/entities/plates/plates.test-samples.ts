@@ -9,31 +9,32 @@ export const sampleWithRequiredData: IPlates = {
 };
 
 export const sampleWithPartialData: IPlates = {
-  id: '14b15938-f128-46f6-9290-c238b63b23dc',
-  name: 'web-enabled Handcrafted Cambridgeshire',
-  price: 1615,
+  id: '4b15938f-1286-4f6d-a90c-238b63b23dcd',
+  name: 'Passage Balboa',
+  price: 99664,
   photo: '../fake-data/blob/hipster.png',
   photoContentType: 'unknown',
-  origin: 'firewall',
-  stars: 4,
+  origin: 'Books Gabon Kids',
+  stars: 0,
   favorite: false,
 };
 
 export const sampleWithFullData: IPlates = {
-  id: '98246ce0-1c30-48aa-b1f8-4041475955e1',
-  name: 'ability Borders data-warehouse',
-  price: 86706,
+  id: '6ce01c30-8aa7-41f8-8041-475955e1b402',
+  name: 'Avon global',
+  price: 82748,
   photo: '../fake-data/blob/hipster.png',
   photoContentType: 'unknown',
-  origin: 'AI auxiliary Switzerland',
-  stars: 2,
-  favorite: true,
-  cookTime: 38689,
+  origin: 'revolutionize Books SCSI',
+  stars: 4,
+  favorite: false,
+  cookTime: 75848,
+  idrestaurant: 'project',
 };
 
 export const sampleWithNewData: NewPlates = {
-  name: 'Gloves Up-sized definition',
-  price: 58096,
+  name: 'eco-centric payment fuchsia',
+  price: 38157,
   photo: '../fake-data/blob/hipster.png',
   photoContentType: 'unknown',
   id: null,

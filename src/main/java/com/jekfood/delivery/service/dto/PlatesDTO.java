@@ -1,6 +1,7 @@
 package com.jekfood.delivery.service.dto;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
@@ -29,6 +30,8 @@ public class PlatesDTO implements Serializable {
     private Boolean favorite;
 
     private Integer cookTime;
+
+    private String idrestaurant;
 
     private RestaurantDTO restaurant;
 
@@ -104,6 +107,17 @@ public class PlatesDTO implements Serializable {
         this.cookTime = cookTime;
     }
 
+    //************ JN :  affectation of id restaurant starts***************//
+    public String getIdrestaurant() {
+        return this.idrestaurant = this.restaurant.getId();
+    }
+
+    public void setIdrestaurant(String idrestaurant) {
+        this.idrestaurant = idrestaurant;
+    }
+
+    //************ JN :  affectation of id restaurant ends***************//
+
     public RestaurantDTO getRestaurant() {
         return restaurant;
     }
@@ -133,19 +147,60 @@ public class PlatesDTO implements Serializable {
         return Objects.hash(this.id);
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
-        return "PlatesDTO{" +
-            "id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", price=" + getPrice() +
-            ", photo='" + getPhoto() + "'" +
-            ", origin='" + getOrigin() + "'" +
-            ", stars=" + getStars() +
-            ", favorite='" + getFavorite() + "'" +
-            ", cookTime=" + getCookTime() +
-            ", restaurant=" + getRestaurant() +
-            "}";
+        return (
+            "PlatesDTO [id=" +
+            id +
+            ", name=" +
+            name +
+            ", price=" +
+            price +
+            ", photo=" +
+            Arrays.toString(photo) +
+            ", photoContentType=" +
+            photoContentType +
+            ", origin=" +
+            origin +
+            ", stars=" +
+            stars +
+            ", favorite=" +
+            favorite +
+            ", cookTime=" +
+            cookTime +
+            ", idrestaurant=" +
+            idrestaurant +
+            ", restaurant=" +
+            restaurant +
+            ", getId()=" +
+            getId() +
+            ", getName()=" +
+            getName() +
+            ", getPrice()=" +
+            getPrice() +
+            ", getPhoto()=" +
+            Arrays.toString(getPhoto()) +
+            ", getPhotoContentType()=" +
+            getPhotoContentType() +
+            ", getOrigin()=" +
+            getOrigin() +
+            ", getStars()=" +
+            getStars() +
+            ", getFavorite()=" +
+            getFavorite() +
+            ", getCookTime()=" +
+            getCookTime() +
+            ", getIdrestaurant()=" +
+            getIdrestaurant() +
+            ", getRestaurant()=" +
+            getRestaurant() +
+            ", hashCode()=" +
+            hashCode() +
+            ", getClass()=" +
+            getClass() +
+            ", toString()=" +
+            super.toString() +
+            "]"
+        );
     }
 }

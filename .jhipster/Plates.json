@@ -35,6 +35,10 @@
     {
       "fieldName": "cookTime",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "idrestaurant",
+      "fieldType": "String"
     }
   ],
   "name": "Plates",

@@ -102,10 +102,24 @@
             </option>
           </select>
         </div>
+
         <div
           *ngIf="editForm.get(['restaurant'])!.invalid && (editForm.get(['restaurant'])!.dirty || editForm.get(['restaurant'])!.touched)"
         >
           <small class="form-text text-danger" *ngIf="editForm.get(['restaurant'])?.errors?.required"> This field is required. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_idrestaurant">Idrestaurant</label>
+          <input
+            type="text"
+            class="form-control"
+            name="idrestaurant"
+            id="field_idrestaurant"
+            data-cy="idrestaurant"
+            formControlName="idrestaurant"
+            readonly
+          />
         </div>
       </div>
 
