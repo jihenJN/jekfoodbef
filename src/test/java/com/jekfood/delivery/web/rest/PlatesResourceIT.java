@@ -66,6 +66,9 @@ class PlatesResourceIT {
     private static final String DEFAULT_IDRESTAURANT = "AAAAAAAAAA";
     private static final String UPDATED_IDRESTAURANT = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PHOTOS = "AAAAAAAAAA";
+    private static final String UPDATED_PHOTOS = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/plates";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -102,7 +105,8 @@ class PlatesResourceIT {
             .stars(DEFAULT_STARS)
             .favorite(DEFAULT_FAVORITE)
             .cookTime(DEFAULT_COOK_TIME)
-            .idrestaurant(DEFAULT_IDRESTAURANT);
+            .idrestaurant(DEFAULT_IDRESTAURANT)
+            .photos(DEFAULT_PHOTOS);
         // Add required entity
         Restaurant restaurant;
         restaurant = RestaurantResourceIT.createEntity();
@@ -127,7 +131,8 @@ class PlatesResourceIT {
             .stars(UPDATED_STARS)
             .favorite(UPDATED_FAVORITE)
             .cookTime(UPDATED_COOK_TIME)
-            .idrestaurant(UPDATED_IDRESTAURANT);
+            .idrestaurant(UPDATED_IDRESTAURANT)
+            .photos(UPDATED_PHOTOS);
         // Add required entity
         Restaurant restaurant;
         restaurant = RestaurantResourceIT.createUpdatedEntity();
@@ -164,6 +169,7 @@ class PlatesResourceIT {
         assertThat(testPlates.getFavorite()).isEqualTo(DEFAULT_FAVORITE);
         assertThat(testPlates.getCookTime()).isEqualTo(DEFAULT_COOK_TIME);
         assertThat(testPlates.getIdrestaurant()).isEqualTo(DEFAULT_IDRESTAURANT);
+        assertThat(testPlates.getPhotos()).isEqualTo(DEFAULT_PHOTOS);
     }
 
     @Test
@@ -237,7 +243,8 @@ class PlatesResourceIT {
             .andExpect(jsonPath("$.[*].stars").value(hasItem(DEFAULT_STARS)))
             .andExpect(jsonPath("$.[*].favorite").value(hasItem(DEFAULT_FAVORITE.booleanValue())))
             .andExpect(jsonPath("$.[*].cookTime").value(hasItem(DEFAULT_COOK_TIME)))
-            .andExpect(jsonPath("$.[*].idrestaurant").value(hasItem(DEFAULT_IDRESTAURANT)));
+            .andExpect(jsonPath("$.[*].idrestaurant").value(hasItem(DEFAULT_IDRESTAURANT)))
+            .andExpect(jsonPath("$.[*].photos").value(hasItem(DEFAULT_PHOTOS)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -276,7 +283,8 @@ class PlatesResourceIT {
             .andExpect(jsonPath("$.stars").value(DEFAULT_STARS))
             .andExpect(jsonPath("$.favorite").value(DEFAULT_FAVORITE.booleanValue()))
             .andExpect(jsonPath("$.cookTime").value(DEFAULT_COOK_TIME))
-            .andExpect(jsonPath("$.idrestaurant").value(DEFAULT_IDRESTAURANT));
+            .andExpect(jsonPath("$.idrestaurant").value(DEFAULT_IDRESTAURANT))
+            .andExpect(jsonPath("$.photos").value(DEFAULT_PHOTOS));
     }
 
     @Test
@@ -303,7 +311,8 @@ class PlatesResourceIT {
             .stars(UPDATED_STARS)
             .favorite(UPDATED_FAVORITE)
             .cookTime(UPDATED_COOK_TIME)
-            .idrestaurant(UPDATED_IDRESTAURANT);
+            .idrestaurant(UPDATED_IDRESTAURANT)
+            .photos(UPDATED_PHOTOS);
         PlatesDTO platesDTO = platesMapper.toDto(updatedPlates);
 
         restPlatesMockMvc
@@ -327,6 +336,7 @@ class PlatesResourceIT {
         assertThat(testPlates.getFavorite()).isEqualTo(UPDATED_FAVORITE);
         assertThat(testPlates.getCookTime()).isEqualTo(UPDATED_COOK_TIME);
         assertThat(testPlates.getIdrestaurant()).isEqualTo(UPDATED_IDRESTAURANT);
+        assertThat(testPlates.getPhotos()).isEqualTo(UPDATED_PHOTOS);
     }
 
     @Test
@@ -429,6 +439,7 @@ class PlatesResourceIT {
         assertThat(testPlates.getFavorite()).isEqualTo(UPDATED_FAVORITE);
         assertThat(testPlates.getCookTime()).isEqualTo(DEFAULT_COOK_TIME);
         assertThat(testPlates.getIdrestaurant()).isEqualTo(DEFAULT_IDRESTAURANT);
+        assertThat(testPlates.getPhotos()).isEqualTo(DEFAULT_PHOTOS);
     }
 
     @Test
@@ -451,7 +462,8 @@ class PlatesResourceIT {
             .stars(UPDATED_STARS)
             .favorite(UPDATED_FAVORITE)
             .cookTime(UPDATED_COOK_TIME)
-            .idrestaurant(UPDATED_IDRESTAURANT);
+            .idrestaurant(UPDATED_IDRESTAURANT)
+            .photos(UPDATED_PHOTOS);
 
         restPlatesMockMvc
             .perform(
@@ -474,6 +486,7 @@ class PlatesResourceIT {
         assertThat(testPlates.getFavorite()).isEqualTo(UPDATED_FAVORITE);
         assertThat(testPlates.getCookTime()).isEqualTo(UPDATED_COOK_TIME);
         assertThat(testPlates.getIdrestaurant()).isEqualTo(UPDATED_IDRESTAURANT);
+        assertThat(testPlates.getPhotos()).isEqualTo(UPDATED_PHOTOS);
     }
 
     @Test

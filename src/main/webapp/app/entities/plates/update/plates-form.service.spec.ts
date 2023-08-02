@@ -28,6 +28,7 @@ describe('Plates Form Service', () => {
             favorite: expect.any(Object),
             cookTime: expect.any(Object),
             idrestaurant: expect.any(Object),
+            photos: expect.any(Object),
             restaurant: expect.any(Object),
           })
         );
@@ -47,6 +48,7 @@ describe('Plates Form Service', () => {
             favorite: expect.any(Object),
             cookTime: expect.any(Object),
             idrestaurant: expect.any(Object),
+            photos: expect.any(Object),
             restaurant: expect.any(Object),
           })
         );

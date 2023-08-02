@@ -39,6 +39,10 @@
     {
       "fieldName": "idrestaurant",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "photos",
+      "fieldType": "String"
     }
   ],
   "name": "Plates",

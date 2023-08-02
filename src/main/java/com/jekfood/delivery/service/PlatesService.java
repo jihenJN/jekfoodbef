@@ -88,20 +88,6 @@ public class PlatesService {
     }
 
     /**
-     * Get all the plates by id restaurant.
-     *
-     * @return the list of entities.
-     */
-    public List<PlatesDTO> findAllByIdrestaurant(String idrestaurant) {
-        log.debug("Request to get all Plates by id restaurant");
-        return platesRepository
-            .findAllByIdrestaurant(idrestaurant)
-            .stream()
-            .map(platesMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
-    }
-
-    /**
      * Get all the plates with eager load of many-to-many relationships.
      *
      * @return the list of entities.
@@ -129,9 +115,5 @@ public class PlatesService {
     public void delete(String id) {
         log.debug("Request to delete Plates : {}", id);
         platesRepository.deleteById(id);
-    }
-
-    private Object toDto(PlatesDTO platesdto1, Object object1) {
-        return null;
     }
 }

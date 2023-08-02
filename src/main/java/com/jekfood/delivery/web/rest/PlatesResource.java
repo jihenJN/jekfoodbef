@@ -145,18 +145,6 @@ public class PlatesResource {
     }
 
     /**
-     * {@code GET  /platesbyrestaurant/:idrestaurant} : get all the plates by id restaurant.
-     *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of plates in body.
-     */
-    @GetMapping("/platesbyrestaurant/{idrestaurant}")
-    public List<PlatesDTO> getAllPlatesByIdRestaurant(@PathVariable String idrestaurant) {
-        log.debug("REST request to get all Plates by id restaurant");
-        return platesService.findAllByIdrestaurant(idrestaurant);
-    }
-
-    /**
      * {@code GET  /plates/:id} : get the "id" plates.
      *
      * @param id the id of the platesDTO to retrieve.
