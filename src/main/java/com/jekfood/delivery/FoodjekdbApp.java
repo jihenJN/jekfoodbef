@@ -2,12 +2,14 @@ package com.jekfood.delivery;
 
 import com.jekfood.delivery.config.ApplicationProperties;
 import com.jekfood.delivery.config.CRLFLogConverter;
+import com.jekfood.delivery.service.FilesStorageService;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,9 @@ import tech.jhipster.config.JHipsterConstants;
 @SpringBootApplication
 @EnableConfigurationProperties({ ApplicationProperties.class })
 public class FoodjekdbApp {
+
+    @Resource
+    FilesStorageService storageService;
 
     private static final Logger log = LoggerFactory.getLogger(FoodjekdbApp.class);
 
@@ -100,5 +105,10 @@ public class FoodjekdbApp {
             contextPath,
             env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles()
         );
+    }
+
+    public void run(String... arg) throws Exception {
+        //      storageService.deleteAll();
+        storageService.init();
     }
 }
