@@ -80,12 +80,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="idrestaurant">
-            <div class="d-flex">
-              <span>Idrestaurant</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col" jhiSortBy="photos">
             <div class="d-flex">
               <span>Photos</span>
@@ -118,7 +112,6 @@
           <td>{{ plates.stars }}</td>
           <td>{{ plates.favorite }}</td>
           <td>{{ plates.cookTime }}</td>
-          <td>{{ plates.idrestaurant }}</td>
           <td>{{ plates.photos }}</td>
           <td>
             <div *ngIf="plates.restaurant">

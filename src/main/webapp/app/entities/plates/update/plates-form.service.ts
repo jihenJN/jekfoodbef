@@ -26,7 +26,6 @@ type PlatesFormGroupContent = {
   stars: FormControl<IPlates['stars']>;
   favorite: FormControl<IPlates['favorite']>;
   cookTime: FormControl<IPlates['cookTime']>;
-  idrestaurant: FormControl<IPlates['idrestaurant']>;
   photos: FormControl<IPlates['photos']>;
   restaurant: FormControl<IPlates['restaurant']>;
 };
@@ -64,7 +63,6 @@ export class PlatesFormService {
       }),
       favorite: new FormControl(platesRawValue.favorite),
       cookTime: new FormControl(platesRawValue.cookTime),
-      idrestaurant: new FormControl(platesRawValue.idrestaurant),
       photos: new FormControl(platesRawValue.photos),
       restaurant: new FormControl(platesRawValue.restaurant, {
         validators: [Validators.required],

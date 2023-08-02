@@ -10,7 +10,6 @@ export interface IPlates {
   stars?: number | null;
   favorite?: boolean | null;
   cookTime?: number | null;
-  idrestaurant?: string | null;
   photos?: string | null;
   restaurant?: Pick<IRestaurant, 'id' | 'name'> | null;
 }

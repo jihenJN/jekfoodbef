@@ -47,9 +47,6 @@ public class Plates implements Serializable {
     @Field("cook_time")
     private Integer cookTime;
 
-    @Field("idrestaurant")
-    private String idrestaurant;
-
     @Field("photos")
     private String photos;
 
@@ -176,19 +173,6 @@ public class Plates implements Serializable {
         this.cookTime = cookTime;
     }
 
-    public String getIdrestaurant() {
-        return this.idrestaurant;
-    }
-
-    public Plates idrestaurant(String idrestaurant) {
-        this.setIdrestaurant(idrestaurant);
-        return this;
-    }
-
-    public void setIdrestaurant(String idrestaurant) {
-        this.idrestaurant = idrestaurant;
-    }
-
     public String getPhotos() {
         return this.photos;
     }
@@ -247,7 +231,6 @@ public class Plates implements Serializable {
             ", stars=" + getStars() +
             ", favorite='" + getFavorite() + "'" +
             ", cookTime=" + getCookTime() +
-            ", idrestaurant='" + getIdrestaurant() + "'" +
             ", photos='" + getPhotos() + "'" +
             "}";
     }

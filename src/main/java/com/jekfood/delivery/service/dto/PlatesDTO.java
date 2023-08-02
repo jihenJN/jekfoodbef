@@ -30,8 +30,6 @@ public class PlatesDTO implements Serializable {
 
     private Integer cookTime;
 
-    private String idrestaurant;
-
     private String photos;
 
     private RestaurantDTO restaurant;
@@ -108,14 +106,6 @@ public class PlatesDTO implements Serializable {
         this.cookTime = cookTime;
     }
 
-    public String getIdrestaurant() {
-        return idrestaurant;
-    }
-
-    public void setIdrestaurant(String idrestaurant) {
-        this.idrestaurant = idrestaurant;
-    }
-
     public String getPhotos() {
         return photos;
     }
@@ -165,7 +155,6 @@ public class PlatesDTO implements Serializable {
             ", stars=" + getStars() +
             ", favorite='" + getFavorite() + "'" +
             ", cookTime=" + getCookTime() +
-            ", idrestaurant='" + getIdrestaurant() + "'" +
             ", photos='" + getPhotos() + "'" +
             ", restaurant=" + getRestaurant() +
             "}";

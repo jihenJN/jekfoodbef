@@ -37,10 +37,6 @@
       "fieldType": "Integer"
     },
     {
-      "fieldName": "idrestaurant",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "photos",
       "fieldType": "String"
     }
