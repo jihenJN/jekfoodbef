@@ -64,7 +64,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
             String url = MvcUriComponentsBuilder.fromMethodName(FilesController.class, "getFile", filename).build().toString();
 
             // Find the corresponding Plates entity based on its identifier (e.g., ID)
-            Plates plate = platesRepository.findById("64c9459a44980a79f6bfc532").orElse(null);
+            Plates plate = platesRepository.findById("64c955fc9e474447ec71524d").orElse(null);
 
             if (plate != null) {
                 // Get the current list of photos (URLs) for the product

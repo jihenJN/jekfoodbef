@@ -109,6 +109,10 @@ public class Plates implements Serializable {
         this.photo = photo;
     }
 
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
     public String getPhotoContentType() {
         return this.photoContentType;
     }
