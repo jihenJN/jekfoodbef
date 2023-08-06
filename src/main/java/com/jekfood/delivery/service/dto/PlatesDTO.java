@@ -1,6 +1,7 @@
 package com.jekfood.delivery.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
@@ -30,7 +31,7 @@ public class PlatesDTO implements Serializable {
 
     private Integer cookTime;
 
-    private String photos;
+    private List<String> photos;
 
     private RestaurantDTO restaurant;
 
@@ -60,6 +61,14 @@ public class PlatesDTO implements Serializable {
 
     public byte[] getPhoto() {
         return photo;
+    }
+
+    public List<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<String> photos) {
+        this.photos = photos;
     }
 
     public void setPhoto(byte[] photo) {
@@ -104,14 +113,6 @@ public class PlatesDTO implements Serializable {
 
     public void setCookTime(Integer cookTime) {
         this.cookTime = cookTime;
-    }
-
-    public String getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(String photos) {
-        this.photos = photos;
     }
 
     public RestaurantDTO getRestaurant() {

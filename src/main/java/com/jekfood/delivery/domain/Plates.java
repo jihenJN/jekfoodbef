@@ -1,6 +1,7 @@
 package com.jekfood.delivery.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -48,7 +49,7 @@ public class Plates implements Serializable {
     private Integer cookTime;
 
     @Field("photos")
-    private String photos;
+    private List<String> photos;
 
     @DBRef
     @Field("restaurant")
@@ -173,16 +174,11 @@ public class Plates implements Serializable {
         this.cookTime = cookTime;
     }
 
-    public String getPhotos() {
-        return this.photos;
+    public List<String> getPhotos() {
+        return photos;
     }
 
-    public Plates photos(String photos) {
-        this.setPhotos(photos);
-        return this;
-    }
-
-    public void setPhotos(String photos) {
+    public void setPhotos(List<String> photos) {
         this.photos = photos;
     }
 
